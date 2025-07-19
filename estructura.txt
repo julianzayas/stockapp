@@ -1,0 +1,44 @@
+/stockapp/
+�
++-- index.php                # P�gina principal (redirige al login o dashboard)
++-- login.php                # Formulario de inicio de sesi�n
++-- logout.php               # Cierra sesi�n
++-- dashboard.php            # Resumen general
+�
++-- /config/                 # Configuraciones generales
+�   +-- database.php         # Conexi�n a MySQL
+�   +-- auth.php             # Verificaci�n de sesi�n y roles
+�
++-- /includes/               # Elementos comunes
+�   +-- header.php           # Encabezado com�n (con Bootstrap)
+�   +-- footer.php           # Pie de p�gina
+�   +-- navbar.php           # Men� de navegaci�n
+�
++-- /accesorios/              # Gesti�n de art�culos
+�   +-- listar.php           # Listado de art�culos
+�   +-- nuevo.php            # Alta de art�culo
+�   +-- editar.php           # Edici�n
+�   +-- eliminar.php         # Eliminaci�n (opcional: soft delete)
+�
++-- /movimientos/            # Entradas y salidas de stock
+�   +-- registrar.php        # Registrar movimiento
+�   +-- historial.php        # Ver historial completo
+�
++-- /usuarios/               # Solo accesible por admin
+�   +-- listar.php
+�   +-- nuevo.php
+�   +-- editar.php
+�   +-- eliminar.php
+�
++-- /categorias/             # CRUD de categor�as
+�   +-- listar.php
+�   +-- nuevo.php
+�   +-- eliminar.php
+�
++-- /assets/                 # Recursos est�ticos
+�   +-- /css/                # Estilos propios
+�   +-- /js/                 # Scripts propios
+�   +-- /img/                # Logos, �conos, etc.
+�
++-- /sql/                    # Scripts SQL de instalaci�n
+    +-- init.sql             # Crea tablas iniciales

@@ -29,7 +29,7 @@ include '../includes/navbar.php';
 ?>
 
 <div class="container mt-4">
-    <h4>Nuevo Artículo</h4>
+    <h4>Nuevo Accesorio</h4>
     <form method="POST">
         <div class="mb-3">
             <label>Nombre</label>
@@ -68,8 +68,8 @@ include '../includes/navbar.php';
             <label>Ubicación física</label>
             <select name="ubicacion" class="form-control">
                 <option value="">-- Sin ubicación --</option>
-                <option value="local">Local</option>
-                <option value="deposito">Deposito</option>
+                <option value="Local">Local</option>
+                <option value="Deposito">Deposito</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>

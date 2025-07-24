@@ -16,20 +16,20 @@ $stmt->execute([$id]);
 $accesorio = $stmt->fetch();
 
 if (!$accesorio) {
-    echo "Artículo no encontrado.";
+    echo "Accesorio no encontrado.";
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stmt = $pdo->prepare("UPDATE accesorios SET nombre=?, descripcion=?, marca=?, modelo=? categoria_id=?, stock_actual=?, stock_minimo=?, ubicacion=? WHERE id=?");
+    $stmt = $pdo->prepare("UPDATE accesorios SET nombre=?, descripcion=?, marca=?, modelo=?, categoria_id=?, stock_actual=?, stock_minimo=?, ubicacion=? WHERE id=?");
     $stmt->execute([
         $_POST['nombre'],
         $_POST['descripcion'],
-        $_PODT['marca'] ?: null, // Asegurar que marca tenga un valor por defecto
-        $_POST['modelo'] ?: null, // Asegurar que modelo tenga un valor por defecto
-        $_POST['categoria_id'] ?: null,
-        $_POST['stocl_actual'] ?? 0, // Asegurar que stock_actual tenga un valor por defecto
-        $_POST['stock_minimo'] ?? 0, // Asegurar que stock_minimo tenga un valor por defecto
+        $_POST['marca'], // Asegurar que marca tenga un valor por defecto
+        $_POST['modelo'], // Asegurar que modelo tenga un valor por defecto
+        $_POST['categoria_id'],
+        $_POST['stock_actual'], // Asegurar que stock_actual tenga un valor por defecto
+        $_POST['stock_minimo'], // Asegurar que stock_minimo tenga un valor por defecto
         $_POST['ubicacion'],
         $id
     ]);
@@ -53,6 +53,14 @@ include '../includes/navbar.php';
             <textarea name="descripcion" class="form-control"><?= htmlspecialchars($accesorio['descripcion']) ?></textarea>
         </div>
         <div class="mb-3">
+            <label class="form-label">Marca</label>
+            <input type="text" name="marca" class="form-control" required value="<?= htmlspecialchars($accesorio['marca']) ?>">
+        </div>
+        <div class="col-12">
+            <label class="form-label">modelo</label>
+            <input type="text" name="modelo" class="form-control" required value="<?= htmlspecialchars($accesorio['modelo']) ?>">
+        </div>
+        <div class="mb-3">
             <label>Categoría</label>
             <select name="categoria_id" class="form-control">
                 <option value="">-- Sin categoría --</option>
@@ -64,8 +72,8 @@ include '../includes/navbar.php';
             </select>
         </div>
         <div class="mb-3">
-            <label>Cantidad</label>
-            <input type="number" name="stock_minimo" class="form-control" value="<?= $accesorio['stock_minimo'] ?>">
+            <label>Stock</label>
+            <input type="number" name="stock_actual" class="form-control" value="<?= $accesorio['stock_actual'] ?>">
         </div>
         <div class="mb-3">
             <label for="stock_minimo">Stock Mínimo</label>

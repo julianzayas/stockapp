@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background: #f9f9f9;
+  background: #e0e0e0;
 }
 
 h2 {
@@ -64,4 +64,12 @@ a:hover {
   td:nth-of-type(2):before { content: "Categoría"; }
   td:nth-of-type(3):before { content: "Stock"; }
   td:nth-of-type(4):before { content: "Acciones"; }
+
+  /* 
+  footer {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    margin-top: 20px;
+  } */
 }

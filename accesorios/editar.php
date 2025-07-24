@@ -42,7 +42,7 @@ include '../includes/navbar.php';
 ?>
 
 <div class="container mt-4">
-    <h4>Editar Artículo</h4>
+    <h4>Editar Accesorio</h4>
     <form method="POST">
         <div class="mb-3">
             <label>Nombre</label>

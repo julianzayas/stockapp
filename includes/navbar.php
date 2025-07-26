@@ -7,6 +7,7 @@
         <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>/accesorios/listar.php">Accesorios</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>/servicios/listar.php">Servicios</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>/movimientos/historial.php">Movimientos</a></li>
                 <?php if (isAdmin()): ?>
                     <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>/usuarios/listar.php">Usuarios</a></li>

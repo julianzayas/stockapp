@@ -72,7 +72,10 @@ include '../includes/navbar.php';
                 <option value="Deposito">Deposito</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="listar.php" class="btn btn-secondary">Cancelar</a>
+        </div>
     </form>
 </div>
 

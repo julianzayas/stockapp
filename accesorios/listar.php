@@ -19,8 +19,8 @@ $accesorios = $pdo->query("SELECT * FROM accesorios ORDER BY nombre")->fetchAll(
 
     <a href="nuevo.php" class="btn btn-primary mb-3">Agregar Accesorio</a>
     <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
+        <table class="table table bordered table-hover table-striped">
+            <thead class="table-light">
                 <tr>
                     <th>Nombre</th>
                     <th>Marca</th>

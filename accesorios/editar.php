@@ -57,7 +57,7 @@ include '../includes/navbar.php';
             <input type="text" name="marca" class="form-control" required value="<?= htmlspecialchars($accesorio['marca']) ?>">
         </div>
         <div class="col-12">
-            <label class="form-label">modelo</label>
+            <label class="form-label">Modelo</label>
             <input type="text" name="modelo" class="form-control" required value="<?= htmlspecialchars($accesorio['modelo']) ?>">
         </div>
         <div class="mb-3">

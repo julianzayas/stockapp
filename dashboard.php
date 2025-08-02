@@ -39,6 +39,36 @@ include 'includes/navbar.php';
             </div>
         </div>
     </div>
+
+    <!-- Movimientos -->
+    <div class="card mt-4">
+        <div class="card-header bg-dark text-white">
+            Últimos movimientos
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <?php
+                $ultimos = $pdo->query("
+                    SELECT m.*, u.nombre AS usuario
+                    FROM movimientos m
+                    LEFT JOIN usuarios u ON m.usuario_id = u.id
+                    ORDER BY m.creado_en DESC
+                    LIMIT 5
+                ")->fetchAll();
+
+                foreach ($ultimos as $m):
+                    $descripcion = ucfirst($m['tipo']) . ' - ' . ucfirst($m['sector']) . " ($" . number_format($m['total'], 2) . ")";
+                ?>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <?= $descripcion ?>
+                        <span class="badge bg-secondary"><?= date('d/m H:i', strtotime($m['creado_en'])) ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <a href="movimientos/historial.php" class="btn btn-sm btn-outline-dark mt-3">Ver historial completo</a>
+        </div>
+    </div>
+
 </div>
 
 <?php include 'includes/footer.php'; ?>

@@ -13,7 +13,7 @@ $categorias = $pdo->query("SELECT * FROM categorias")->fetchAll();
     <h4>Categorías</h4>
     <a href="crear.php" class="btn btn-success mb-3">+ Agregar categoría</a>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-sm table-bordered table-hover table-striped">
         <thead class="table-dark">
             <tr>
                 <th>Nombre</th>

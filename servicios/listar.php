@@ -11,6 +11,8 @@ $servicios = $pdo->query("SELECT * FROM servicios ORDER BY marca, modelo")->fetc
 
 <div class="container mt-4">
     <h4>Lista de Servicios</h4>
+
+    <!-- Mensajes de actualización -->
     <?php if (!empty($_SESSION['mensaje'])): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert"> 
             <?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?>
@@ -23,10 +25,12 @@ $servicios = $pdo->query("SELECT * FROM servicios ORDER BY marca, modelo")->fetc
         </div>
     <?php endif; ?>
 
-    <a href="crear.php" class="btn btn-primary mb-3">Agregar Servicio</a>
+    <a href="crear.php" class="btn btn-primary mb-3">+ Agregar servicio</a>
+
+    <!-- Tabla -->
     <div class="table-responsive">
-        <table class="table table-sm table-striped">
-            <thead>
+        <table class="table table-sm table-bordered table-hover table-striped">
+            <thead class="table-dark">
                 <tr>
                     <th>Marca</th>
                     <th>Modelo</th>
@@ -66,12 +70,15 @@ $servicios = $pdo->query("SELECT * FROM servicios ORDER BY marca, modelo")->fetc
                             <?php endif; ?>
                         </td>
                         <td>
+                            <!-- Editar -->
                             <a href="editar.php?id=<?= $s['id'] ?>" class="btn btn-sm btn-warning">Editar</a>
+                            <!-- Eliminar -->
                             <?php if ($tiene_movimientos): ?>
                                 <button class="btn btn-sm btn-secondary" disabled title="Ya tiene movimientos">Eliminar</button>
                             <?php else: ?>
                                 <a href="eliminar.php?id=<?= $s['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar este servicio?')">Eliminar</a>
                             <?php endif; ?>
+                            <!-- Activar/Desactivar -->
                             <a href="estado.php?id=<?= $s['id'] ?>" class="btn btn-sm <?= $s['activo'] ? 'btn-outline-secondary' : 'btn-outline-success' ?>">
                                 <?= $s['activo'] ? 'Desactivar' : 'Activar' ?>
                             </a>

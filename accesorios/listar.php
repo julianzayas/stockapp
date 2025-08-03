@@ -6,27 +6,40 @@ requireLogin();
 include '../includes/header.php';
 include '../includes/navbar.php';
 
-$accesorios = $pdo->query("SELECT * FROM accesorios ORDER BY nombre")->fetchAll();
+$accesorios = $pdo->query("SELECT a.*, c.nombre AS categoria 
+                     FROM accesorios a 
+                     LEFT JOIN categorias c ON a.categoria_id = c.id")->fetchAll();
 ?>
 
 <div class="container mt-4">
-    <h4>Lista de Accesorios</h4>
+    <h4>Accesorios en Stock</h4>
+
+    <!-- Mensajes de actualización -->
     <?php if (!empty($_SESSION['mensaje'])): ?>
-        <div class="alert alert-success"> <?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?> </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= $_SESSION['mensaje']; unset($_SESSION['mensaje']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
     <?php elseif (!empty($_SESSION['error'])): ?>
-        <div class="alert alert-danger"> <?= $_SESSION['error']; unset($_SESSION['error']); ?> </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+            <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button> 
+        </div>
     <?php endif; ?>
 
-    <a href="nuevo.php" class="btn btn-primary mb-3">Agregar Accesorio</a>
+    <a href="nuevo.php" class="btn btn-success mb-3">+ Agregar accesorio</a>
     <div class="table-responsive">
-        <table class="table table bordered table-hover table-striped">
-            <thead class="table-light">
+        <table class="table table-sm table-bordered table-hover table-striped">
+            <thead class="table-dark">
                 <tr>
                     <th>Nombre</th>
+                    <th>Descripción</th>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>Stock</th>
+                    <th>Categoria</th>
+                    <th>Stock Actual</th>
                     <th>Stock Mínimo</th>
+                    <th>Ubicación</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -40,8 +53,10 @@ $accesorios = $pdo->query("SELECT * FROM accesorios ORDER BY nombre")->fetchAll(
                     ?>
                     <tr class="<?= $a['activo'] ? '' : 'table-secondary' ?>">
                         <td><?= htmlspecialchars($a['nombre']) ?></td>
+                        <td><?= htmlspecialchars($a['descripcion']) ?></td>
                         <td><?= htmlspecialchars($a['marca']) ?></td>
                         <td><?= htmlspecialchars($a['modelo']) ?></td>
+                        <td><?= htmlspecialchars($a['categoria']) ?></td>
                         <td>
                             <?= (int) $a['stock_actual'] ?>
                             <?php if ($a['stock_actual'] <= $a['stock_minimo']): ?>
@@ -49,6 +64,7 @@ $accesorios = $pdo->query("SELECT * FROM accesorios ORDER BY nombre")->fetchAll(
                             <?php endif; ?>
                         </td>
                         <td><?= (int) $a['stock_minimo'] ?></td>
+                        <td><?= htmlspecialchars($a['ubicacion']) ?></td>
                         <td>
                             <?php if ($a['activo']): ?>
                                 <span class="badge bg-success">Activo</span>

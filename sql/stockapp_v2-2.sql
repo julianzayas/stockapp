@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2025 a las 21:38:09
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 03-08-2025 a las 06:28:28
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `stockapp3`
+-- Base de datos: `stockapp_v2_2`
 --
 
 -- --------------------------------------------------------
@@ -39,9 +39,26 @@ CREATE TABLE `accesorios` (
   `precio_compra` decimal(10,2) DEFAULT 0.00,
   `precio_venta` decimal(10,2) DEFAULT 0.00,
   `ubicacion` varchar(100) DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT 1,
   `creado_en` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizado_en` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `accesorios`
+--
+
+INSERT INTO `accesorios` (`id`, `nombre`, `descripcion`, `marca`, `modelo`, `categoria_id`, `stock_actual`, `stock_minimo`, `precio_compra`, `precio_venta`, `ubicacion`, `activo`, `creado_en`, `actualizado_en`) VALUES
+(1, 'Accesorio 2', 'Bateria Motorola E7i', 'Motorola', 'E7i', 3, 10, 1, 0.00, 0.00, 'Local', 1, '2025-07-23 22:50:21', '2025-08-01 04:13:29'),
+(2, 'Accesorio 3', 'Cable Motorola E7i', 'Motorola', 'E7i', 2, 1, 1, 0.00, 0.00, 'Local', 1, '2025-07-23 22:54:27', '2025-07-30 02:59:03'),
+(8, 'Accesorio 1', 'Modulo Pantalla', 'Motorola', 'E7i', 1, 16, 10, 1000.00, 1000.00, 'Local', 1, '2025-07-26 04:10:07', '2025-08-03 01:40:40'),
+(10, 'Accesorio 4', 'Cables', 'Motorola', 'E7i', 2, 10, 1, 0.00, 0.00, 'Local', 1, '2025-07-30 03:52:54', '2025-08-03 01:40:26'),
+(11, 'Pantalla Ejemplo', '', 'Iphone', 'A10', 1, 10, 5, 0.00, 0.00, 'Deposito', 1, '2025-08-02 05:12:45', '2025-08-02 05:12:45'),
+(12, 'Prueba-3', 'Descripcion...', 'Motorola', 'E7i', 3, 11, 5, 0.00, 0.00, 'Deposito', 1, '2025-08-03 02:05:21', '2025-08-03 02:05:21'),
+(13, 'Pantalla Ejemplo X', '', 'Iphone', 'A10', 1, 1, 0, 0.00, 0.00, 'Deposito', 1, '2025-08-03 02:13:55', '2025-08-03 02:14:15'),
+(14, 'Accesorio 5', '', 'Motorola', 'A10', 1, 10, 1, 0.00, 0.00, 'Deposito', 1, '2025-08-03 02:22:23', '2025-08-03 02:23:22'),
+(16, 'Accesorio 51', '', '', '', 1, 0, 0, 0.00, 0.00, 'Local', 1, '2025-08-03 04:02:31', '2025-08-03 04:02:31'),
+(17, 'Pantalla Ejemplo', '', '', '', 1, 0, 0, 0.00, 0.00, 'Local', 1, '2025-08-03 04:06:53', '2025-08-03 04:06:53');
 
 -- --------------------------------------------------------
 
@@ -53,6 +70,15 @@ CREATE TABLE `categorias` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`) VALUES
+(1, 'Pantallas'),
+(2, 'Cables'),
+(3, 'Baterias');
 
 -- --------------------------------------------------------
 
@@ -69,8 +95,20 @@ CREATE TABLE `movimientos` (
   `cantidad` int(11) NOT NULL,
   `total` decimal(10,2) NOT NULL,
   `observacion` text DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT 1,
   `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `movimientos`
+--
+
+INSERT INTO `movimientos` (`id`, `usuario_id`, `tipo`, `sector`, `item_id`, `cantidad`, `total`, `observacion`, `activo`, `creado_en`) VALUES
+(11, 1, 'salida', 'accesorio', 8, 5, 0.00, '', 1, '2025-07-31 04:30:20'),
+(13, 1, 'servicio', 'servicio', 1, 1, 6300.00, 'activacion', 1, '2025-07-31 22:01:41'),
+(14, 1, 'servicio', 'servicio', 2, 1, 5000.00, 'software', 1, '2025-08-01 04:14:14'),
+(15, 1, 'servicio', 'servicio', 4, 1, 1000.00, 'frp', 1, '2025-08-02 03:24:03'),
+(16, 1, 'entrada', 'accesorio', 8, 1, 0.00, 'Compra', 1, '2025-08-02 05:09:05');
 
 -- --------------------------------------------------------
 
@@ -89,8 +127,25 @@ CREATE TABLE `servicios` (
   `pin_de_carga` decimal(10,2) DEFAULT 0.00,
   `letras_rojas` tinyint(1) DEFAULT 0,
   `pegado_tapa` tinyint(1) DEFAULT 0,
+  `activo` tinyint(1) DEFAULT 1,
   `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `servicios`
+--
+
+INSERT INTO `servicios` (`id`, `marca`, `modelo`, `activacion`, `software`, `frp`, `formatear`, `pin_de_carga`, `letras_rojas`, `pegado_tapa`, `activo`, `creado_en`) VALUES
+(1, 'Iphone', 'A1', 5000.00, 5000.00, 5000.00, 5000.00, 5000.00, 1, 1, 1, '2025-07-24 22:37:36'),
+(2, 'Motorola', 'E7i', 5000.00, 5000.00, 5000.00, 5000.00, 5000.00, 1, 1, 1, '2025-07-24 22:53:31'),
+(4, 'Samsung', 'Galaxy 10', 1000.00, 1000.00, 1000.00, 1000.00, 5000.00, 1, 0, 1, '2025-07-27 00:30:22'),
+(10, 'Huawei', 'H10', 1000.00, 1000.00, 1000.00, 1000.00, 1000.00, 0, 0, 1, '2025-08-03 02:06:10'),
+(11, 'Motorola', 'A10', 1111.00, 1111.00, 1111.00, 1111.00, 1111.00, 0, 0, 1, '2025-08-03 03:24:06'),
+(12, 'Motorola', 'A10', 1111.00, 1111.00, 1111.00, 1111.00, 1111.00, 0, 0, 1, '2025-08-03 03:27:44'),
+(13, 'Samsung', 'Edge', 1.00, 1.00, 1.00, 1.00, 1.00, 0, 0, 1, '2025-08-03 03:30:48'),
+(14, 'a', 'a', 1.00, 1.00, 1.00, 1.00, 1.00, 0, 0, 1, '2025-08-03 03:31:25'),
+(15, 'Motorola', 'A10', 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 1, '2025-08-03 04:07:17'),
+(16, 'Huawei', 'Huawei', 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 1, '2025-08-03 04:08:23');
 
 -- --------------------------------------------------------
 
@@ -160,25 +215,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `accesorios`
 --
 ALTER TABLE `accesorios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

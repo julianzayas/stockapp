@@ -27,7 +27,7 @@ $accesorios = $pdo->query("SELECT a.*, c.nombre AS categoria
         </div>
     <?php endif; ?>
 
-    <a href="nuevo.php" class="btn btn-success mb-3">+ Agregar accesorio</a>
+    <a href="crear.php" class="btn btn-success mb-3">+ Agregar accesorio</a>
     <div class="table-responsive">
         <table class="table table-sm table-bordered table-hover table-striped">
             <thead class="table-dark">

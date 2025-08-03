@@ -41,6 +41,7 @@ $servicios = $pdo->query("SELECT * FROM servicios ORDER BY marca, modelo")->fetc
                     <th>Pin de carga</th>
                     <th>Letras Rojas</th>
                     <th>Pegado Tapa</th>
+                    <!-- <th>Extras</th> -->
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -62,6 +63,14 @@ $servicios = $pdo->query("SELECT * FROM servicios ORDER BY marca, modelo")->fetc
                         <td><?= number_format($s['pin_de_carga'], 2) ?></td>
                         <td><?= $s['letras_rojas'] ? 'Sí' : 'No' ?></td>
                         <td><?= $s['pegado_tapa'] ? 'Sí' : 'No' ?></td>
+                        <!-- <td>
+                            <?php if ($s['letras_rojas']): ?>
+                                <span class="badge bg-warning text-dark">Letras Rojas</span>
+                            <?php endif; ?>
+                            <?php if ($s['pegado_tapa']): ?>
+                                <span class="badge bg-info text-dark">Pegado Tapa</span>
+                            <?php endif; ?>
+                        </td> -->
                         <td>
                             <?php if ($s['activo']): ?>
                                 <span class="badge bg-success">Activo</span>

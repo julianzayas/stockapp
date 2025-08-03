@@ -11,7 +11,7 @@ $categorias = $pdo->query("SELECT * FROM categorias")->fetchAll();
 
 <div class="container mt-4">
     <h4>Categorías</h4>
-    <a href="nuevo.php" class="btn btn-success mb-3">+ Agregar categoría</a>
+    <a href="crear.php" class="btn btn-success mb-3">+ Agregar categoría</a>
 
     <table class="table table-bordered table-hover">
         <thead class="table-dark">

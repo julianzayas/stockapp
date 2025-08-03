@@ -13,13 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([
         $_POST['nombre'],
         $_POST['descripcion'],
-        $_POST['marca'] ?: null,
-        $_POST['modelo'] ?: null,
-        $_POST['categoria_id'] ?: null,
+        $_POST['marca'],
+        $_POST['modelo'],
+        $_POST['categoria_id'],
         $_POST['stock_actual'] ?? 0,
         $_POST['stock_minimo'] ?: 0,
         $_POST['ubicacion']
     ]);
+    $_SESSION['mensaje'] = "Accesorio agregado correctamente.";
     header("Location: listar.php");
     exit;
 }
@@ -49,7 +50,7 @@ include '../includes/navbar.php';
         </div>
         <div class="mb-3">
             <label>Categoría</label>
-            <select name="categoria_id" class="form-control">
+            <select name="categoria_id" class="form-control" required>
                 <option value="">-- Sin categoría --</option>
                 <?php foreach ($categorias as $c): ?>
                     <option value="<?= $c['id'] ?>"><?= $c['nombre'] ?></option>
@@ -66,14 +67,14 @@ include '../includes/navbar.php';
         </div>
         <div class="mb-3">
             <label>Ubicación física</label>
-            <select name="ubicacion" class="form-control">
+            <select name="ubicacion" class="form-control" required>
                 <option value="">-- Sin ubicación --</option>
                 <option value="Local">Local</option>
                 <option value="Deposito">Deposito</option>
             </select>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-success">Agregar Accesorio</button>
             <a href="listar.php" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>

@@ -114,6 +114,8 @@ foreach ($res->fetchAll() as $r) {
     </div> -->
 
     <!-- Filtros -->
+    <h5><i class="bi bi-funnel"></i> ⚙️ Filtrar Movimientos</h5>
+    <p>Utiliza los filtros para buscar movimientos específicos.</p>
     <form method="GET" class="row g-2 mb-3 align-items-end">
         <div class="col-md-3">
             <label class="form-label">Tipo</label>

@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_POST['ubicacion'],
         $id
     ]);
+    $_SESSION['mensaje'] = "Accesorio actualizado correctamente.";
     header("Location: listar.php");
     exit;
 }
@@ -88,7 +89,7 @@ include '../includes/navbar.php';
             </select>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-success">Guardar Cambios</button>
             <a href="listar.php" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>

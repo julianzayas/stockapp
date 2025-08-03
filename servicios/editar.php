@@ -1,4 +1,3 @@
-
 <?php
 require_once '../config/database.php';
 require_once '../config/auth.php';
@@ -87,8 +86,8 @@ include '../includes/navbar.php';
             </div>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-success">Guardar Cambios</button>
-            <a href="listar.php" class="btn btn-secondary">Volver</a>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a href="listar.php" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
 </div>

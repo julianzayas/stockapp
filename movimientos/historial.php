@@ -26,6 +26,7 @@ $sql = "
     SELECT 
         m.*, 
         u.nombre AS usuario_nombre,
+        u.rol AS usuario_rol,
         a.nombre AS accesorio_nombre,
         s.marca AS servicio_marca,
         s.modelo AS servicio_modelo,
@@ -154,9 +155,10 @@ foreach ($res->fetchAll() as $r) {
                     <th>Tipo</th>
                     <th>Sector</th>
                     <th>Descripción</th>
-                    <th>Cantidad</th>
+                    <th>Cant.</th>
                     <th>Total</th>
                     <th>Usuario</th>
+                    <th>Obs.</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -164,7 +166,18 @@ foreach ($res->fetchAll() as $r) {
                 <?php foreach ($movimientos as $m): ?>
                     <tr class="<?= $m['tipo_mov'] === 'entrada' ? 'table-success' : ($m['tipo_mov'] === 'salida' ? 'table-danger' : 'table-primary') ?>">
                         <td><?= date('d/m/Y H:i', strtotime($m['creado_en'])) ?></td>
-                        <td><?= ucfirst($m['tipo_mov']) ?></td>
+                        <!-- <td><?= ucfirst($m['tipo_mov']) ?></td> -->
+                        <td class="text-center">
+                            <?php if ($m['tipo'] === 'servicio'): ?>
+                                <span class="badge bg-<?= $m['tipo'] === 'servicio' ? 'primary' : 'danger' ?>">
+                                    <?= ucfirst($m['tipo']) ?>
+                                </span>
+                            <?php elseif ($m['sector_mov'] === 'accesorio'): ?>
+                                <span class="badge bg-<?= $m['tipo'] === 'entrada' ? 'success' : 'danger' ?>">
+                                    <?= ucfirst($m['tipo']) ?>
+                                </span>
+                            <?php endif; ?>
+                        </td>
                         <td><?= ucfirst($m['sector_mov']) ?></td>
                         <td>
                             <?php if ($m['sector_mov'] === 'accesorio'): ?>
@@ -173,17 +186,24 @@ foreach ($res->fetchAll() as $r) {
                                 <?= htmlspecialchars(ucfirst($m['observacion'])) ?> (<?= $m['servicio_marca'] ?> <?= $m['servicio_modelo'] ?>)
                             <?php endif; ?>
                         </td>
-                        <td><?= $m['cantidad'] ?></td>
+                        <td class="text-wrap"><?= $m['cantidad'] ?></td>
                         <td><?= $m['total'] !== null ? '$' . number_format($m['total'], 2) : '-' ?></td>
                         <td><?= htmlspecialchars($m['usuario_nombre']) ?></td>
+                        <td class="text-wrap"><?= htmlspecialchars($m['observacion']) ?></td>
                         <td>
-                            <?php if ($m['sector_mov'] === 'accesorio'): ?>
-                                <a href="editar_accesorio.php?id=<?= $m['id'] ?>" class="btn btn-sm btn-outline-primary">✏️</a>
+                            <?php if ($_SESSION['rol'] === 'admin'): ?>
+    
+                                <?php if ($m['sector_mov'] === 'accesorio'): ?>
+                                    <a href="editar_accesorio.php?id=<?= $m['id'] ?>" class="btn btn-sm btn-outline-primary">✏️</a>
+                                <?php else: ?>
+                                    <a href="editar_servicio.php?id=<?= $m['id'] ?>" class="btn btn-sm btn-outline-primary">✏️</a>
+                                <?php endif; ?>
+                                <a href="eliminar.php?id=<?= $m['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Eliminar movimiento?')">🗑️</a>
                             <?php else: ?>
-                                <a href="editar_servicio.php?id=<?= $m['id'] ?>" class="btn btn-sm btn-outline-primary">✏️</a>
+                                <span class="text-muted">Sin permisos</span>
                             <?php endif; ?>
-                            <a href="eliminar.php?id=<?= $m['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Eliminar movimiento?')">🗑️</a>
-                        </td>
+                        
+                            </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

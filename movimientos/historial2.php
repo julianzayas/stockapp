@@ -36,7 +36,7 @@ $movimientos = $stmt->fetchAll();
                     <?php foreach ($movimientos as $m): ?>
                         <tr>
                             <td><?= date('d/m/Y H:i', strtotime($m['creado_en'])) ?></td>
-                            <td class="text-wrap"><?= htmlspecialchars($m['accesorio']) ?></td>
+                            <td class="text-wrap"><?= htmlspecialchars($m['accesorio'] ?? '') ?></td>
                             <td class="text-center">
                                 <span class="badge bg-<?= $m['tipo'] === 'entrada' ? 'success' : 'danger' ?>">
                                     <?= ucfirst($m['tipo']) ?>

@@ -73,8 +73,8 @@ foreach ($res->fetchAll() as $r) {
 
     <!-- Botones de Registro -->
     <div class="mb-3">
-        <a href="registrar_accesorio.php" class="btn btn-success me-2">Registrar Movimiento de Accesorio</a>
-        <a href="registrar_servicio.php" class="btn btn-primary me-2">Registrar Movimiento de Servicio</a>
+        <a href="registrar_accesorio.php" class="btn btn-success me-2">Movimiento de Stock</a>
+        <a href="registrar_servicio.php" class="btn btn-primary me-2">Registrar Servicio</a>
         <a href="resumenes.php" class="btn btn-outline-dark">📊 Ver resúmenes</a>
 
     </div>

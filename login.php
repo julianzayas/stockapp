@@ -13,15 +13,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $stmt->fetch();
 
     if ($user && password_verify($pass, $user['password'])) {
+        if ($user['activo'] != 1) {
+            $error = "Cuenta inactiva. Contacte al administrador.";
+        } else {
+        // Iniciar sesión
+        $_SESSION['loggedin'] = true;
         $_SESSION['usuario_id'] = $user['id'];
         $_SESSION['nombre'] = $user['nombre'];
         $_SESSION['rol'] = $user['rol'];
         header("Location: dashboard.php");
         exit;
+        }
     } else {
-        $error = "Usuario o contraseña incorrectos.";
-    }
+            $error = "Usuario o contraseña incorrectos.";
+         }
 }
+
 ?>
 
 <!DOCTYPE html>

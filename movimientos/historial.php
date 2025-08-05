@@ -186,7 +186,7 @@ foreach ($res->fetchAll() as $r) {
                                 <?= htmlspecialchars(ucfirst($m['observacion'])) ?> (<?= $m['servicio_marca'] ?> <?= $m['servicio_modelo'] ?>)
                             <?php endif; ?>
                         </td>
-                        <td class="text-wrap"><?= $m['cantidad'] ?></td>
+                        <td class="text-center"><?= $m['cantidad'] ?></td>
                         <td><?= $m['total'] !== null ? '$' . number_format($m['total'], 2) : '-' ?></td>
                         <td><?= htmlspecialchars($m['usuario_nombre']) ?></td>
                         <td class="text-wrap"><?= htmlspecialchars($m['observacion']) ?></td>

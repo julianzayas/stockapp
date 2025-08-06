@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-success">Registrar Servicio</button>
+            <button type="submit" class="btn btn-primary">Registrar Servicio</button>
             <a href="historial.php" class="btn btn-secondary">Volver</a>
         </div>
     </form>

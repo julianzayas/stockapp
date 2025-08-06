@@ -114,11 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="precio_base" class="form-control" disabled>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Monto adicional</label>
-                <input type="number" step="0.01" min="0" name="monto_extra" class="form-control" value="0.00">
-            </div>
-
             <div class="row mb-3">
                 <div class="col-6 form-check">
                     <input type="checkbox" class="form-check-input" id="letras_rojas" name="letras_rojas">
@@ -129,6 +124,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="checkbox" class="form-check-input" id="pegado_tapa" name="pegado_tapa">
                     <label for="pegado_tapa" class="form-check-label">Pegado de tapa (+$800)</label>
                 </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Monto adicional</label>
+                <input type="number" step="0.01" min="0" name="monto_extra" class="form-control" value="0.00">
             </div>
 
             <div class="mb-3">
@@ -146,13 +146,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
     const servicioSelect = document.getElementById('servicio_id');
+    const precioBaseField = document.getElementById('precio_base');
     const tipoSelect = document.getElementById('tipo_servicio');
     const letrasRojas = document.getElementById('letras_rojas');
     const pegadoTapa = document.getElementById('pegado_tapa');
     const montoExtra = document.querySelector('input[name="monto_extra"]');
     const totalField = document.getElementById('total_servicio');
-    const precioBaseField = document.getElementById('precio_base');
-
     function calcularTotal() {
         const servicio = servicioSelect.selectedOptions[0];
         const tipo = tipoSelect.value;

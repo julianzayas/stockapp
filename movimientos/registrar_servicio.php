@@ -32,9 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                VALUES (?, 'servicio', 'servicio', ?, 1, ?, ?)");
         $stmt->execute([$usuario_id, $servicio_id, $total, $tipo_servicio]);
 
-        $mensaje = "✔️ Servicio registrado correctamente.";
+        /* $mensaje = "✔️ Servicio registrado correctamente."; */
+        $mensaje = "Servicio registrado correctamente.";
     } else {
-        $mensaje = "⚠️ Datos incompletos o inválidos.";
+        /* $mensaje = "⚠️ Datos incompletos o inválidos."; */
+        $mensaje = "Datos incompletos o inválidos.";
     }
 }
 ?>
@@ -89,11 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="precio_base" class="form-control" disabled>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Monto adicional</label>
-                <input type="number" step="0.01" min="0" name="monto_extra" class="form-control" value="0.00">
-            </div>
-
             <div class="row mb-3">
                 <div class="col-6 form-check">
                     <input type="checkbox" class="form-check-input" id="letras_rojas" name="letras_rojas">
@@ -107,12 +104,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="mb-3">
+                <label class="form-label">Monto adicional</label>
+                <input type="number" step="0.01" min="0" name="monto_extra" class="form-control" value="0.00">
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label">Total estimado</label>
                 <input type="text" id="total_servicio" class="form-control" disabled>
             </div>
 
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-success">Registrar Servicio</button>
+                <button type="submit" class="btn btn-primary">Registrar Servicio</button>
                 <a href="historial.php" class="btn btn-secondary">Volver</a>
             </div>
         </div>

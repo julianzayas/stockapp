@@ -45,24 +45,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $movimientos = $stmt->fetchAll();
 
-// Calcular resumen de totales
-/* $resumen = [
-    'entrada' => ['cantidad' => 0, 'movs' => 0],
-    'salida' => ['cantidad' => 0, 'movs' => 0],
-    'servicio' => ['cantidad' => 0, 'total' => 0.00, 'movs' => 0]
-];
-
-$res = $pdo->query("SELECT tipo, sector, SUM(cantidad) as cant, SUM(total) as tot, COUNT(*) as movs FROM movimientos GROUP BY tipo, sector");
-foreach ($res->fetchAll() as $r) {
-    if ($r['tipo'] === 'entrada' || $r['tipo'] === 'salida') {
-        $resumen[$r['tipo']]['cantidad'] += $r['cant'];
-        $resumen[$r['tipo']]['movs'] += $r['movs'];
-    } elseif ($r['tipo'] === 'servicio') {
-        $resumen['servicio']['cantidad'] += $r['cant'];
-        $resumen['servicio']['total'] += $r['tot'];
-        $resumen['servicio']['movs'] += $r['movs'];
-    }
-} */
 ?>
 
 <?php include '../includes/header.php'; ?>
@@ -78,41 +60,6 @@ foreach ($res->fetchAll() as $r) {
         <a href="resumenes.php" class="btn btn-outline-dark">📊 Ver resúmenes</a>
 
     </div>
-
-    <!-- Resumen de movimientos -->
-    <!-- <div class="container mb-4">
-        <h5>📋 Resumen de movimientos</h5>
-        <div class="row row-cols-1 row-cols-md-3 g-3">
-            <div class="col">
-                <div class="card border-success">
-                    <div class="card-body">
-                        <h6 class="card-title text-success">Entradas</h6>
-                        <p>Movimientos: <?= $resumen['entrada']['movs'] ?></p>
-                        <p>Unidades: <?= $resumen['entrada']['cantidad'] ?></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-danger">
-                    <div class="card-body">
-                        <h6 class="card-title text-danger">Salidas</h6>
-                        <p>Movimientos: <?= $resumen['salida']['movs'] ?></p>
-                        <p>Unidades: <?= $resumen['salida']['cantidad'] ?></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <h6 class="card-title text-primary">Servicios</h6>
-                        <p>Movimientos: <?= $resumen['servicio']['movs'] ?></p>
-                        <p>Total: $<?= number_format($resumen['servicio']['total'], 2) ?></p>
-                        <p>Realizados: <?= $resumen['servicio']['cantidad'] ?></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <!-- Filtros -->
     <h5><i class="bi bi-funnel"></i> ⚙️ Filtrar Movimientos</h5>

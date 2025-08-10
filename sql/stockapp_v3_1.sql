@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-08-2025 a las 06:28:28
+-- Tiempo de generación: 10-08-2025 a las 18:57:04
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `stockapp_v2_2`
+-- Base de datos: `stockapp_v3.1`
 --
 
 -- --------------------------------------------------------
@@ -57,7 +57,7 @@ INSERT INTO `accesorios` (`id`, `nombre`, `descripcion`, `marca`, `modelo`, `cat
 (12, 'Prueba-3', 'Descripcion...', 'Motorola', 'E7i', 3, 11, 5, 0.00, 0.00, 'Deposito', 1, '2025-08-03 02:05:21', '2025-08-03 02:05:21'),
 (13, 'Pantalla Ejemplo X', '', 'Iphone', 'A10', 1, 1, 0, 0.00, 0.00, 'Deposito', 1, '2025-08-03 02:13:55', '2025-08-03 02:14:15'),
 (14, 'Accesorio 5', '', 'Motorola', 'A10', 1, 10, 1, 0.00, 0.00, 'Deposito', 1, '2025-08-03 02:22:23', '2025-08-03 02:23:22'),
-(16, 'Accesorio 51', '', '', '', 1, 0, 0, 0.00, 0.00, 'Local', 1, '2025-08-03 04:02:31', '2025-08-03 04:02:31'),
+(16, 'Accesorio 51', '', '', '', 1, 12, 0, 0.00, 0.00, 'Local', 1, '2025-08-03 04:02:31', '2025-08-04 22:38:37'),
 (17, 'Pantalla Ejemplo', '', '', '', 1, 0, 0, 0.00, 0.00, 'Local', 1, '2025-08-03 04:06:53', '2025-08-03 04:06:53');
 
 -- --------------------------------------------------------
@@ -108,7 +108,11 @@ INSERT INTO `movimientos` (`id`, `usuario_id`, `tipo`, `sector`, `item_id`, `can
 (13, 1, 'servicio', 'servicio', 1, 1, 6300.00, 'activacion', 1, '2025-07-31 22:01:41'),
 (14, 1, 'servicio', 'servicio', 2, 1, 5000.00, 'software', 1, '2025-08-01 04:14:14'),
 (15, 1, 'servicio', 'servicio', 4, 1, 1000.00, 'frp', 1, '2025-08-02 03:24:03'),
-(16, 1, 'entrada', 'accesorio', 8, 1, 0.00, 'Compra', 1, '2025-08-02 05:09:05');
+(16, 1, 'entrada', 'accesorio', 8, 1, 0.00, 'Compra', 1, '2025-08-02 05:09:05'),
+(17, 3, 'servicio', 'servicio', 10, 1, 2300.00, 'activacion', 1, '2025-08-03 08:05:51'),
+(18, 3, 'entrada', 'accesorio', 16, 1, 0.00, 'Compra', 1, '2025-08-03 08:06:25'),
+(19, 1, 'entrada', 'accesorio', 16, 10, 0.00, 'Compra', 1, '2025-08-04 22:38:37'),
+(20, 1, 'servicio', 'servicio', 11, 1, 1111.00, 'activacion', 1, '2025-08-06 03:41:22');
 
 -- --------------------------------------------------------
 
@@ -168,7 +172,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `rol`, `activo`, `creado_en`) VALUES
-(1, 'Administrador', 'admin@stockapp.com', '$2y$10$5Ziha11r0kTCUfP9HanOk.ufYN7uH2OAv58V7Ng9FnlF.DWQ8dKXW', 'admin', 1, '2025-07-07 13:46:39');
+(1, 'Administrador', 'admin@stockapp.com', '$2y$10$5Ziha11r0kTCUfP9HanOk.ufYN7uH2OAv58V7Ng9FnlF.DWQ8dKXW', 'admin', 1, '2025-07-07 13:46:39'),
+(3, 'Empleado', 'empleado@stockapp.com', '$2y$10$8UCIludFfKf.rkRE3Z9UP.Err0C2CUeh.o1iOleiao8K2tVfhKhk2', 'empleado', 0, '2025-08-03 07:32:10');
 
 --
 -- Índices para tablas volcadas
@@ -227,7 +232,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
@@ -239,7 +244,7 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

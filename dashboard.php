@@ -9,7 +9,7 @@ include 'includes/navbar.php';
 
 <div class="container mt-4">
     <h3>Bienvenido, <?= $_SESSION['nombre']; ?></h3>
-    <h2>Prueba de Dashboard</h2>
+    <h2>Prueba de Dashboard 2</h2>
     <p class="lead">Este es tu panel de control del sistema de stock.</p>
 
     <div class="row">

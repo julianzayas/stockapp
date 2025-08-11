@@ -10,7 +10,7 @@ include 'includes/navbar.php';
 <div class="container mt-4">
     <h3>Bienvenido, <?= $_SESSION['nombre']; ?></h3>
     <p class="lead">Este es tu panel de control del sistema de stock.</p>
-    <p>Desde aquí podrás gestionar los productos, accesorios y movimientos de stock.</p>
+    <p>Desde aquí podrás gestionar los productos, accesorios y movimientos de stock 2.</p>
 
     <div class="row">
         <div class="col-md-4">

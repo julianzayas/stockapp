@@ -1,0 +1,41 @@
+name: Deploy to Revolución Móvil
+
+on:
+  push:
+    branches:
+      - main  # o la rama que uses para producción
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout código del repo de desarrollo
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Configurar Git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+
+    - name: Clonar repositorio de producción
+      run: |
+        git clone https://x-access-token:${{ secrets.PROD_PAT }}@github.com/julianzayas/revolucionmovil.git prod-repo
+
+    - name: Copiar archivos excepto los excluidos
+      run: |
+        rsync -av --delete \
+          --exclude 'config\database.php' \
+          --exclude 'config\constantes.php' \
+          --exclude 'includes\navbar.php' \
+          --exclude 'login.php' \
+          ./ prod-repo/
+
+    - name: Commit y push a producción
+      run: |
+        cd prod-repo
+        git add .
+        git commit -m "Deploy automático desde stockapp"
+        git push origin main

@@ -22,7 +22,7 @@ jobs:
 
     - name: Clonar repositorio de producción
       run: |
-        git clone https://x-access-token:${{ secrets.PROD_PAT }}@github.com/julianzayas/revolucionmovil.git prod-repo
+        git clone https://x-access-token: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@github.com/julianzayas/revolucionmovil.git prod-repo
 
     - name: Copiar archivos excepto los excluidos
       run: |

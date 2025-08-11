@@ -15,7 +15,7 @@ jobs:
 
       - name: Clone revolucionmovil (prod)
         run: |
-          git clone https://x-access-token:${{ secrets.PAT_PROD }}@github.com/julianzayas/revolucionmovil.git prod-repo
+          git clone https://x-access-token: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@github.com/julianzayas/revolucionmovil.git prod-repo
 
       - name: Copy files excluding configs
         run: |

@@ -9,8 +9,8 @@ include 'includes/navbar.php';
 
 <div class="container mt-4">
     <h3>Bienvenido, <?= $_SESSION['nombre']; ?></h3>
-    <h2>Prueba de Dashboard 2</h2>
     <p class="lead">Este es tu panel de control del sistema de stock.</p>
+    <p>Desde aquí podrás gestionar los productos, accesorios y movimientos de stock.</p>
 
     <div class="row">
         <div class="col-md-4">

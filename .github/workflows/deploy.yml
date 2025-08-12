@@ -15,14 +15,14 @@ jobs:
 
       - name: Clone revolucionmovil (prod)
         run: |
-          git clone https://x-access-token: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@github.com/julianzayas/revolucionmovil.git prod-repo
+          git clone https://x-access-token:${{ secrets.PROD_PAT }}@github.com/julianzayas/revolucionmovil.git prod-repo
 
       - name: Copy files excluding configs
         run: |
           rsync -av --delete \
             --exclude 'config/database.php' \
             --exclude 'config/constantes.php' \
-            --exclude 'includes/navbar.php' \
+            --exclude 'inclu des/navbar.php' \
             --exclude 'login.php' \
             ./ prod-repo/
 

@@ -8,7 +8,8 @@ include 'includes/navbar.php';
 ?>
 
 <div class="container mt-4">
-    <h3>Hola, buenas, <?= $_SESSION['nombre']; ?></h3>
+    <h3>Bienvenido, <?= $_SESSION['nombre']; ?></h3>
+    <p class="text-muted">Hoy es <?= date('d/m/Y'); ?>.</p>
     <p class="lead">Este es tu panel de control del sistema de stock.</p>
 
     <div class="row">

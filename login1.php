@@ -41,11 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body class="bg-light">
 
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4 text-center mb-3">
-            <img src="assets/img/logo.png" alt="Revolución Móvil" class="img-fluid" style="max-width: 200px; height: auto;">
-        </div>
-    </div>
+    <img src="assets/img/logo.png" alt="Revolución Móvil" class="img-fluid" style="max-width: 200px; height: auto;">
 </div>
 
 <div class="container mt-5">
